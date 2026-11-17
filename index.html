@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TheVan Co., Ltd</title>
+<!--
+  VỎ TRANG — chỉ để có địa chỉ .pages.dev đẹp, web thật vẫn chạy trên Google Apps Script.
+  CHỈ CẦN SỬA 1 DÒNG DUY NHẤT dưới đây rồi tải file này lên Cloudflare Pages.
+
+  Bản này CHUYỂN HƯỚNG THẲNG sang web thật (không nhúng iframe), vì nhúng iframe
+  làm web thật bị lồng thêm 1 lớp, gây chậm/ăn RAM và làm khung xem trước tài liệu
+  Google Drive báo lỗi "Không thể mở tệp" do Google chặn iframe lồng quá sâu.
+  Đổi lại: sau khi vào, thanh địa chỉ sẽ đổi sang link web thật, không giữ được
+  chữ .pages.dev suốt — đây là cách dùng đúng và an toàn của domain "vỏ".
+-->
+<style>
+  html,body{margin:0;padding:0;height:100%;background:#0b1220}
+  #cho{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    color:#cbd5e1;font:15px/1.5 -apple-system,"Be Vietnam Pro",Arial,sans-serif}
+  .vong{width:30px;height:30px;border:3px solid #27344a;border-top-color:#8bb4ff;
+    border-radius:50%;animation:xoay 0.8s linear infinite;margin-right:10px}
+  @keyframes xoay{to{transform:rotate(360deg)}}
+  #loi{display:none;flex-direction:column;gap:14px;text-align:center;padding:24px}
+  #loi a{color:#8bb4ff;text-decoration:none;font-weight:600}
+  noscript{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    color:#e2e8f0;font:15px/1.6 -apple-system,Arial,sans-serif;text-align:center;padding:24px}
+  noscript a{color:#8bb4ff}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- SỬA DÒNG NÀY: dán link /exec đầy đủ của web TheVan (lấy ở     -->
+<!-- tab QuanTri, dòng "Link web chính thức") vào giữa hai dấu ''   -->
+<script>
+  var LINK_WEB_THAT = 'https://script.google.com/macros/s/AKfycbyHnWhkRk-xTby_9sQqOLeHhoN2tC21HMmrk0ePxFgGWHDyZS7I9EmX_zlnYBfApdsB/exec';
+</script>
+<!-- ============================================================ -->
+
+<div id="cho"><span class="vong"></span>Đang mở TheVan…</div>
+<div id="loi">
+  <div>Chưa gắn link web — mở file này, sửa dòng LINK_WEB_THAT rồi tải lại lên Cloudflare Pages.</div>
+</div>
+<noscript><div>Trình duyệt đang tắt JavaScript. <a href="">Bấm vào đây để vào TheVan Co., Ltd</a>.</div></noscript>
+
+<script>
+(function () {
+  var cho = document.getElementById('cho');
+  var loi = document.getElementById('loi');
+
+  if (!LINK_WEB_THAT || LINK_WEB_THAT.indexOf('XXXX') !== -1) {
+    cho.style.display = 'none';
+    loi.style.display = 'flex';
+  } else {
+    document.querySelector('noscript a').href = LINK_WEB_THAT;
+    // chuyển hướng thẳng, không dùng iframe — tránh lồng iframe gây chậm/lỗi
+    window.location.replace(LINK_WEB_THAT);
+  }
+})();
+</script>
+</body>
+</html>
